@@ -154,7 +154,7 @@ footer {
 <section>
   <h3>CONTROLLED CHAOS</h3>
   <p>
-    SmallBurgerMania is a bar-first burger concept built on loud flavors, 
+    SmallBurgerMania is a bar-first burger concept built on loud flavors,  
     aggressive smash burgers, and a no-nonsense bar program.
   </p>
 </section>
