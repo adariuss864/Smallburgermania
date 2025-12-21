@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmallBurgerMania | Bar & Grill</title>
+
+<style>
+:root {
+  --red: #ff0000;
+  --blue: #007bff;
+  --black: #000;
+  --white: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav h1 {
+  color: var(--red);
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+nav a {
+  color: var(--white);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* HERO */
+header {
+  background: linear-gradient(135deg, var(--red), var(--blue));
+  text-align: center;
+  padding: 140px 20px;
+}
+
+header h2 {
+  font-size: 3.2rem;
+  margin-bottom: 15px;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 15px 35px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-dark {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.dark {
+  background: #111;
+}
+
+h3 {
+  color: var(--red);
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  border: 2px solid var(--blue);
+  padding: 30px;
+}
+
+.card strong {
+  color: var(--red);
+}
+
+/* HAPPY HOUR */
+.hh span {
+  display: inline-block;
+  margin: 10px 20px;
+  font-size: 1.2rem;
+}
+
+/* LOCATIONS */
+.highlight {
+  border-color: var(--red);
+  background: #111;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  padding: 30px;
+  font-size: 0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>SMALLBURGERMANIA</h1>
+  <div>
+    <a href="#menu">Menu</a>
+    <a href="#happyhour">Happy Hour</a>
+    <a href="#locations">Locations</a>
+  </div>
+</nav>
+
+<header>
+  <h2>SMASHED. SAUCED. UNHINGED.</h2>
+  <p>Burgers • Wings • Cold Beer • Zero Apologies</p>
+  <button class="btn btn-dark">View Menu</button>
+</header>
+
+<section>
+  <h3>CONTROLLED CHAOS</h3>
+  <p>
+    SmallBurgerMania is a bar-first burger concept built on loud flavors, 
+    aggressive smash burgers, and a no-nonsense bar program.
+  </p>
+</section>
+
+<section id="menu" class="dark">
+  <h3>THE MENU</h3>
+
+  <div class="grid">
+    <div class="card">
+      <strong>SMASH BURGERS</strong><br><br>
+      Original Maniac<br>
+      Heat Check<br>
+      Double Trouble
+    </div>
+
+    <div class="card">
+      <strong>WINGS</strong><br><br>
+      OG Buffalo<br>
+      Honey Heat<br>
+      Garlic Parm<br>
+      🔥 Inferno
+    </div>
+
+    <div class="card">
+      <strong>SAUCES</strong><br><br>
+      Red Mania<br>
+      Blue Heat<br>
+      Sweet Psycho<br>
+      Garlic Frenzy
+    </div>
+
+    <div class="card">
+      <strong>THE BAR</strong><br><br>
+      Draft & Local Beers<br>
+      Classic Cocktails<br>
+      Shot Specials
+    </div>
+  </div>
+</section>
+
+<section id="happyhour">
+  <h3>HAPPY HOUR</h3>
+  <p>Monday – Friday | 4–6 PM</p>
+
+  <div class="hh">
+    <span>$5 Drafts</span>
+    <span>$6 Wells</span>
+    <span>$7 Wings</span>
+    <span>$4 Fries</span>
+  </div>
+</section>
+
+<section id="locations" class="dark">
+  <h3>LOCATIONS</h3>
+
+  <div class="grid">
+    <div class="card">
+      <strong>Greenville, SC</strong><br>
+      Now Open
+    </div>
+
+    <div class="card">
+      <strong>Anderson, SC</strong><br>
+      Now Open
+    </div>
+
+    <div class="card highlight">
+      <strong>Atlanta, GA</strong><br>
+      <em>Opening January 1, 2026</em>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© SmallBurgerMania Bar & Grill</p>
+  <p>Controlled Chaos. Unreal Burgers.</p>
+</footer>
+
+</body>
+</html>

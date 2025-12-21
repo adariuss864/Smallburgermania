@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.nav .logo {
+  color: red;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, red, #007bff);
+  padding-bottom: 80px;
+}
+
+.hero-text {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.btn-primary {
+  background: black;
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.brand h2 {
+  color: red;
+}
+
+/* MENU */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.menu-card {
+  border: 2px solid #007bff;
+  padding: 20px;
+}
+
+.menu-card h3 {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* HAPPY HOUR */
+.hh-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+/* LOCATIONS */
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.location-card {
+  border: 2px solid white;
+  padding: 30px;
+}
+
+.location-card.highlight {
+  border-color: red;
+  background: #111;
+}
+
+/* CAREERS */
+.btn-secondary {
+  background: red;
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* FOOTER */
+.footer {
+  background: #111;
+  padding: 30px;
+  font-size: 0.9rem;
+}
