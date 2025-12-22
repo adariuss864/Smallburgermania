@@ -1,241 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmallBurgerMania | Bar & Grill</title>
-
-<style>
-:root {
-  --red: #ff0000;
-  --blue: #007bff;
-  --black: #000;
-  --white: #fff;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  background: var(--black);
-  color: var(--white);
-  line-height: 1.6;
-}
-
-/* NAV */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background: #000;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-nav .brand {
-  color: var(--red);
-  letter-spacing: 2px;
-  font-weight: 900;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
-
-nav a {
-  color: var(--white);
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* HERO */
-header {
-  background: linear-gradient(135deg, var(--red), var(--blue));
-  text-align: center;
-  padding: 140px 20px;
-}
-
-header h1 {
-  font-size: 3.2rem;
-  margin-bottom: 15px;
-}
-
-header p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-}
-
-.btn {
-  padding: 15px 35px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-dark {
-  background: var(--black);
-  color: var(--white);
-}
-
-/* SECTIONS */
-main section {
-  padding: 80px 40px;
-  text-align: center;
-}
-
-.dark {
-  background: #111;
-}
-
-h3 {
-  color: var(--red);
-  margin-bottom: 20px;
-}
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.card {
-  border: 2px solid var(--blue);
-  padding: 30px;
-}
-
-.card strong {
-  color: var(--red);
-}
-
-/* HAPPY HOUR */
-.hh span {
-  display: inline-block;
-  margin: 10px 20px;
-  font-size: 1.2rem;
-}
-
-/* LOCATIONS */
-.highlight {
-  border-color: var(--red);
-  background: #111;
-}
-
-/* FOOTER */
-footer {
-  background: #111;
-  padding: 30px;
-  font-size: 0.9rem;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmallBurgerMania | Bar & Grill</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<nav aria-label="Primary navigation">
-  <a href="/" class="brand">SMALLBURGERMANIA</a>
-  <div>
-    <a href="#menu">Menu</a>
-    <a href="#happyhour">Happy Hour</a>
-    <a href="#locations">Locations</a>
-  </div>
-</nav>
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="/" class="logo" aria-label="SmallBurgerMania home">
+      <!-- Place your PNG at images/branding.png -->
+      <img src="images/branding.png" alt="SmallBurgerMania logo" width="160" height="auto">
+    </a>
 
-<header>
-  <h1>SMASHED. SAUCED. UNHINGED.</h1>
-  <p>Burgers • Wings • Cold Beer • Zero Apologies</p>
-  <button class="btn btn-dark" type="button" onclick="location.href='#menu'">View Menu</button>
-</header>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#happyhour">Happy Hour</a></li>
+      <li><a href="#locations">Locations</a></li>
+    </ul>
+  </nav>
 
-<main>
-  <section>
-    <h3>CONTROLLED CHAOS</h3>
-    <p>
-      SmallBurgerMania is a bar-first burger concept built on loud flavors,  
-      aggressive smash burgers, and a no-nonsense bar program.
-    </p>
-  </section>
-
-  <section id="menu" class="dark">
-    <h3>THE MENU</h3>
-
-    <div class="grid">
-      <div class="card">
-        <strong>SMASH BURGERS</strong><br><br>
-        Original Maniac<br>
-        Heat Check<br>
-        Double Trouble
-      </div>
-
-      <div class="card">
-        <strong>WINGS</strong><br><br>
-        OG Buffalo<br>
-        Honey Heat<br>
-        Garlic Parm<br>
-        🔥 Inferno
-      </div>
-
-      <div class="card">
-        <strong>SAUCES</strong><br><br>
-        Red Mania<br>
-        Blue Heat<br>
-        Sweet Psycho<br>
-        Garlic Frenzy
-      </div>
-
-      <div class="card">
-        <strong>THE BAR</strong><br><br>
-        Draft & Local Beers<br>
-        Classic Cocktails<br>
-        Shot Specials
-      </div>
+  <header class="hero" role="banner">
+    <div class="hero-content">
+      <h1>SMASHED. SAUCED. UNHINGED.</h1>
+      <p>Burgers • Wings • Cold Beer • Zero Apologies</p>
+      <p>
+        <a class="btn-primary" href="#menu">View Menu</a>
+        <a class="btn-secondary" href="#locations">Locations</a>
+      </p>
     </div>
-  </section>
+  </header>
 
-  <section id="happyhour">
-    <h3>HAPPY HOUR</h3>
-    <p>Monday – Friday | 4–6 PM</p>
+  <main>
+    <section>
+      <h2 class="brand"><span>CONTROLLED CHAOS</span></h2>
+      <p>
+        SmallBurgerMania is a bar-first burger concept built on loud flavors,
+        aggressive smash burgers, and a no-nonsense bar program.
+      </p>
+    </section>
 
-    <div class="hh">
-      <span>$5 Drafts</span>
-      <span>$6 Wells</span>
-      <span>$7 Wings</span>
-      <span>$4 Fries</span>
-    </div>
-  </section>
+    <section id="menu">
+      <h3>THE MENU</h3>
 
-  <section id="locations" class="dark">
-    <h3>LOCATIONS</h3>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <h3>SMASH BURGERS</h3>
+          <p>Original Maniac<br>Heat Check<br>Double Trouble</p>
+        </div>
 
-    <div class="grid">
-      <div class="card">
-        <strong>Greenville, SC</strong><br>
-        Now Open
+        <div class="menu-card">
+          <h3>WINGS</h3>
+          <p>OG Buffalo<br>Honey Heat<br>Garlic Parm<br>🔥 Inferno</p>
+        </div>
+
+        <div class="menu-card">
+          <h3>SAUCES</h3>
+          <p>Red Mania<br>Blue Heat<br>Sweet Psycho<br>Garlic Frenzy</p>
+        </div>
+
+        <div class="menu-card">
+          <h3>THE BAR</h3>
+          <p>Draft & Local Beers<br>Classic Cocktails<br>Shot Specials</p>
+        </div>
       </div>
+    </section>
 
-      <div class="card">
-        <strong>Anderson, SC</strong><br>
-        Now Open
+    <section id="happyhour">
+      <h3>HAPPY HOUR</h3>
+      <p>Monday – Friday | 4–6 PM</p>
+
+      <div class="hh-grid">
+        <div>$5 Drafts</div>
+        <div>$6 Wells</div>
+        <div>$7 Wings</div>
+        <div>$4 Fries</div>
       </div>
+    </section>
 
-      <div class="card highlight">
-        <strong>Atlanta, GA</strong><br>
-        <em>Opening January 1, 2026</em>
+    <section id="locations">
+      <h3>LOCATIONS</h3>
+
+      <div class="location-grid">
+        <div class="location-card">
+          <strong>Greenville, SC</strong><br>Now Open
+        </div>
+
+        <div class="location-card">
+          <strong>Anderson, SC</strong><br>Now Open
+        </div>
+
+        <div class="location-card highlight">
+          <strong>Atlanta, GA</strong><br><em>Opening January 1, 2026</em>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-<footer>
-  <p>© SmallBurgerMania Bar & Grill</p>
-  <p>Controlled Chaos. Unreal Burgers.</p>
-</footer>
+  <footer class="footer">
+    <p>© SmallBurgerMania Bar & Grill</p>
+    <p>Controlled Chaos. Unreal Burgers.</p>
+  </footer>
 
 </body>
 </html>
