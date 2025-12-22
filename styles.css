@@ -53,12 +53,12 @@ body {
     url("images/burger-hero.jpg");
   background-size: cover;
   background-position: center;
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-bottom: 80px; /* if needed for spacing similar to original */
+  padding: 40px 20px;
 }
 
 .hero-content {
@@ -67,6 +67,7 @@ body {
   border-radius: 12px;
   max-width: 900px;
   width: calc(100% - 40px);
+  box-sizing: border-box;
 }
 
 .hero h1 {
@@ -180,30 +181,3 @@ section {
   padding: 30px;
   font-size: 0.9rem;
 }
-.hero {
-  background-image: url("images/burger-hero.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.hero-content {
-  background: rgba(0,0,0,0.6);
-  padding: 40px;
-  border-radius: 12px;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  color: #ff0000;
-}
-
-.hero p {
-  font-size: 1.4rem;
-  color: #00a2ff;
-}
-
