@@ -1,0 +1,134 @@
+// Frontend logic: load menu, cart management, checkout
+const menuGrid = document.getElementById('menu-grid');
+const cartBtn = document.getElementById('cart-btn');
+const cartCount = document.getElementById('cart-count');
+const cartModal = document.getElementById('cart-modal');
+const closeCart = document.getElementById('close-cart');
+const cartItemsEl = document.getElementById('cart-items');
+const cartTotalEl = document.getElementById('cart-total');
+const checkoutBtn = document.getElementById('checkout-btn');
+const checkoutModal = document.getElementById('checkout-modal');
+const closeCheckout = document.getElementById('close-checkout');
+const checkoutForm = document.getElementById('checkout-form');
+const checkoutMessage = document.getElementById('checkout-message');
+
+let menu = [];
+let cart = []; // {id, name, price, qty}
+
+// load menu
+fetch('/api/menu')
+  .then(r => r.json())
+  .then(data => {
+    menu = data;
+    renderMenu();
+  })
+  .catch(err => {
+    menuGrid.innerHTML = '<p class="small">Could not load menu.</p>';
+  });
+
+function renderMenu(){
+  menuGrid.innerHTML = '';
+  menu.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <img src="${item.image}" alt="${escapeHtml(item.name)}" />
+      <h4>${escapeHtml(item.name)}</h4>
+      <p class="small">${escapeHtml(item.description)}</p>
+      <div class="meta">
+        <div class="price">$${item.price.toFixed(2)}</div>
+        <button class="btn primary add-btn">Add</button>
+      </div>`;
+    const btn = div.querySelector('.add-btn');
+    btn.addEventListener('click', () => addToCart(item));
+    menuGrid.appendChild(div);
+  });
+}
+
+function addToCart(item){
+  const found = cart.find(c => c.id === item.id);
+  if (found) found.qty++;
+  else cart.push({ id: item.id, name: item.name, price: item.price, qty: 1 });
+  updateCartUI();
+}
+
+function updateCartUI(){
+  const totalQty = cart.reduce((s,i) => s + i.qty, 0);
+  cartCount.textContent = totalQty;
+  const total = cart.reduce((s,i) => s + i.qty * i.price, 0);
+  cartTotalEl.textContent = total.toFixed(2);
+  cartItemsEl.innerHTML = '';
+  if (cart.length === 0) {
+    cartItemsEl.innerHTML = '<p class="small">Your cart is empty.</p>';
+    return;
+  }
+  cart.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'cart-item';
+    el.innerHTML = `
+      <img src="/assets/placeholder.svg" alt="${escapeHtml(item.name)}" />
+      <div style="flex:1">
+        <div><strong>${escapeHtml(item.name)}</strong></div>
+        <div class="small">$${item.price.toFixed(2)} x ${item.qty}</div>
+      </div>
+      <div class="qty">
+        <button class="dec">−</button>
+        <div>${item.qty}</div>
+        <button class="inc">+</button>
+      </div>
+    `;
+    el.querySelector('.dec').addEventListener('click', () => {
+      item.qty--;
+      if (item.qty <= 0) cart = cart.filter(c => c !== item);
+      updateCartUI();
+    });
+    el.querySelector('.inc').addEventListener('click', () => {
+      item.qty++;
+      updateCartUI();
+    });
+    cartItemsEl.appendChild(el);
+  });
+}
+
+// modal toggles
+cartBtn.addEventListener('click', () => { cartModal.classList.remove('hidden'); });
+closeCart.addEventListener('click', () => { cartModal.classList.add('hidden'); });
+checkoutBtn.addEventListener('click', () => {
+  cartModal.classList.add('hidden');
+  checkoutModal.classList.remove('hidden');
+});
+closeCheckout.addEventListener('click', () => { checkoutModal.classList.add('hidden'); });
+
+// checkout submit
+checkoutForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (cart.length === 0) { checkoutMessage.textContent = 'Your cart is empty.'; return; }
+  const form = new FormData(checkoutForm);
+  const body = {
+    customer_name: form.get('customer_name'),
+    customer_phone: form.get('customer_phone'),
+    customer_address: form.get('customer_address'),
+    items: cart.map(i => ({ id: i.id, name: i.name, qty: i.qty, price: i.price })),
+    total: Number(cart.reduce((s,i) => s + i.qty * i.price, 0).toFixed(2))
+  };
+  checkoutMessage.textContent = 'Placing order...';
+  fetch('/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }).then(async res => {
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Order failed');
+    checkoutMessage.textContent = `Order placed! Your order ID is ${data.order_id}. Thank you!`;
+    cart = [];
+    updateCartUI();
+    checkoutForm.reset();
+    setTimeout(() => checkoutModal.classList.add('hidden'), 2500);
+  }).catch(err => {
+    console.error(err);
+    checkoutMessage.textContent = 'There was an error placing your order. Please try again.';
+  });
+});
+
+// Simple escape
+function escapeHtml(s){return String(s).replace(/[&<>"']/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]})}
