@@ -1,109 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SmallBurgerMania | Bar & Grill</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Small Burger Mania</title>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-
-  <nav class="nav" aria-label="Primary navigation">
-    <a href="/" class="logo" aria-label="SmallBurgerMania home">
-      <!-- "a8a745fe-7bd1-44ac-9805-f0c598738fed.png" -->
-      <img src="images/branding.png" alt="SmallBurgerMania logo" width="160" height="auto">
-    </a>
-
-    <ul>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#happyhour">Happy Hour</a></li>
-      <li><a href="#locations">Locations</a></li>
-    </ul>
-  </nav>
-
-  <header class="hero" role="banner">
-    <div class="hero-content">
-      <h1>SMASHED. SAUCED. UNHINGED.</h1>
-      <p>Burgers • Wings • Cold Beer • Zero Apologies</p>
-      <p>
-        <a class="btn-primary" href="#menu">View Menu</a>
-        <a class="btn-secondary" href="#locations">Locations</a>
-      </p>
+  <header class="site-header">
+    <div class="brand">
+      <img src="/assets/logo.svg" alt="Small Burger Mania logo" class="logo" />
+      <h1>Small Burger Mania</h1>
     </div>
+    <nav>
+      <button id="menu-btn" class="btn ghost">Menu</button>
+      <button id="cart-btn" class="btn primary">Cart (<span id="cart-count">0</span>)</button>
+    </nav>
   </header>
 
   <main>
-    <section>
-      <h2 class="brand"><span>CONTROLLED CHAOS</span></h2>
-      <p>
-        SmallBurgerMania is a bar-first burger concept built on loud flavors,
-        aggressive smash burgers, and a no-nonsense bar program.
-      </p>
+    <section class="hero">
+      <div class="hero-inner">
+        <h2>Fresh. Fast. Flavorful.</h2>
+        <p>Handcrafted small burgers and sides — order online and we'll have it ready.</p>
+        <a href="#menu" class="btn large primary">Order Now</a>
+      </div>
+      <img src="/assets/hero-burger.svg" alt="Delicious burger" class="hero-art" />
     </section>
 
-    <section id="menu">
-      <h3>THE MENU</h3>
-
-      <div class="menu-grid">
-        <div class="menu-card">
-          <h3>SMASH BURGERS</h3>
-          <p>Original Maniac<br>Heat Check<br>Double Trouble</p>
-        </div>
-
-        <div class="menu-card">
-          <h3>WINGS</h3>
-          <p>OG Buffalo<br>Honey Heat<br>Garlic Parm<br>🔥 Inferno</p>
-        </div>
-
-        <div class="menu-card">
-          <h3>SAUCES</h3>
-          <p>Red Mania<br>Blue Heat<br>Sweet Psycho<br>Garlic Frenzy</p>
-        </div>
-
-        <div class="menu-card">
-          <h3>THE BAR</h3>
-          <p>Draft & Local Beers<br>Classic Cocktails<br>Shot Specials</p>
-        </div>
-      </div>
+    <section id="menu" class="menu-section container">
+      <h2>Our Menu</h2>
+      <div id="menu-grid" class="grid"></div>
     </section>
 
-    <section id="happyhour">
-      <h3>HAPPY HOUR</h3>
-      <p>Monday – Friday | 4–6 PM</p>
-
-      <div class="hh-grid">
-        <div>$5 Drafts</div>
-        <div>$6 Wells</div>
-        <div>$7 Wings</div>
-        <div>$4 Fries</div>
-      </div>
-    </section>
-
-    <section id="locations">
-      <h3>LOCATIONS</h3>
-
-      <div class="location-grid">
-        <div class="location-card">
-          <strong>Greenville, SC</strong><br>Now Open
-        </div>
-
-        <div class="location-card">
-          <strong>Anderson, SC</strong><br>Now Open
-        </div>
-
-        <div class="location-card highlight">
-          <strong>Atlanta, GA</strong><br><em>Opening January 1, 2026</em>
-        </div>
-      </div>
+    <section class="how-it-works container">
+      <h3>How it works</h3>
+      <ol>
+        <li>Choose from our menu</li>
+        <li>Place your order</li>
+        <li>Pick up or get it delivered</li>
+      </ol>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>© SmallBurgerMania Bar & Grill</p>
-    <p>Controlled Chaos. Unreal Burgers.</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; Small Burger Mania — tasty since 2025</p>
+      <p>Admin: <code>GET /api/orders?admin_token=YOUR_ADMIN_TOKEN</code></p>
+    </div>
   </footer>
 
+  <!-- Cart modal -->
+  <div id="cart-modal" class="modal hidden">
+    <div class="modal-panel">
+      <button class="modal-close" id="close-cart">✕</button>
+      <h3>Your Cart</h3>
+      <div id="cart-items"></div>
+      <div class="cart-summary">
+        <div>Total: $<span id="cart-total">0.00</span></div>
+        <button id="checkout-btn" class="btn primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout modal -->
+  <div id="checkout-modal" class="modal hidden">
+    <div class="modal-panel">
+      <button class="modal-close" id="close-checkout">✕</button>
+      <h3>Checkout</h3>
+      <form id="checkout-form">
+        <label>
+          Name
+          <input type="text" name="customer_name" required />
+        </label>
+        <label>
+          Phone
+          <input type="tel" name="customer_phone" required />
+        </label>
+        <label>
+          Address (optional for pickup)
+          <input type="text" name="customer_address" />
+        </label>
+        <button type="submit" class="btn primary">Place order</button>
+      </form>
+      <div id="checkout-message" role="status"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
 </body>
 </html>
-
-
